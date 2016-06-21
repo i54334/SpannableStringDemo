@@ -3,13 +3,13 @@ package com.baoyachi.spannablestringdemo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
+import android.text.style.SuperscriptSpan;
 import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity
         showRelativeSizeSpan();
         showStrikethroughSpan();
         showUnderlineSpan();
+        showSuperscriptSpan();
     }
 
     /**
@@ -110,5 +111,20 @@ public class MainActivity extends AppCompatActivity
         spannableString.setSpan(underlineSpan,7,spannableString.length(),Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         tvUnderLineSpan.setText(spannableString);
     }
+
+    /**
+     * 设置上标
+     */
+    private void showSuperscriptSpan()
+    {
+        TextView tvSuperScriptSpan = (TextView) findViewById(R.id.tv_superscript_span);
+        SpannableString spannableString = new SpannableString("这是第六行设置文字上标:X2");
+        SuperscriptSpan superscriptSpan = new SuperscriptSpan();
+        spannableString.setSpan(superscriptSpan,13,14,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tvSuperScriptSpan.setText(spannableString);
+    }
+
+
+
 }
 
