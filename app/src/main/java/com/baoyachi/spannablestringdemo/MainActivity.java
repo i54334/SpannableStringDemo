@@ -1,6 +1,7 @@
 package com.baoyachi.spannablestringdemo;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
@@ -9,7 +10,10 @@ import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
+import android.text.style.StyleSpan;
+import android.text.style.SubscriptSpan;
 import android.text.style.SuperscriptSpan;
+import android.text.style.TypefaceSpan;
 import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
@@ -28,6 +32,8 @@ public class MainActivity extends AppCompatActivity
         showStrikethroughSpan();
         showUnderlineSpan();
         showSuperscriptSpan();
+        showSubscriptSpan();
+        showStyleSpan();
     }
 
     /**
@@ -124,6 +130,31 @@ public class MainActivity extends AppCompatActivity
         tvSuperScriptSpan.setText(spannableString);
     }
 
+    /**
+     * 设置文字下标
+     */
+    private void showSubscriptSpan()
+    {
+        TextView tvSubScriptSpan = (TextView) findViewById(R.id.tv_subscript_span);
+        SpannableString spannableString = new SpannableString("这是第七行设置文字下标:CO2");
+        SubscriptSpan subscriptSpan = new SubscriptSpan();
+        spannableString.setSpan(subscriptSpan, spannableString.length()-1, spannableString.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tvSubScriptSpan.setText(spannableString);
+    }
+
+    /**
+     * 设置文字字体
+     */
+    private void showStyleSpan()
+    {
+        TextView tvStyleSpan = (TextView) findViewById(R.id.tv_style_span);
+        SpannableString spannableString = new SpannableString("这是第八行设置文字字体");
+        StyleSpan styleSpanBold = new StyleSpan(Typeface.BOLD);//粗体
+        StyleSpan styleSpanItalic = new StyleSpan(Typeface.ITALIC);//斜体
+        spannableString.setSpan(styleSpanBold,2,4,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(styleSpanItalic,spannableString.length()-2,spannableString.length(),Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tvStyleSpan.setText(spannableString);
+    }
 
 
 }
