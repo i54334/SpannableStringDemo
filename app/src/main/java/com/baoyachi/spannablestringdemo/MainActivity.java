@@ -9,6 +9,8 @@ import android.text.Spanned;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
+import android.text.style.StrikethroughSpan;
+import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity
         showForegroundColorSpan();
         showBackgroundColorSpan();
         showRelativeSizeSpan();
+        showStrikethroughSpan();
+        showUnderlineSpan();
     }
 
     /**
@@ -49,6 +53,9 @@ public class MainActivity extends AppCompatActivity
         tvBackgroundColorSpan.setText(spannableString);
     }
 
+    /**
+     * 设置文字相对大小
+     */
     private void showRelativeSizeSpan()
     {
         TextView tvRelativeSizeSpan = (TextView) findViewById(R.id.tv_relative_size_span);
@@ -78,6 +85,30 @@ public class MainActivity extends AppCompatActivity
         spannableString.setSpan(sizeSpan9,9,10,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         spannableString.setSpan(sizeSpan10,10,11,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         tvRelativeSizeSpan.setText(spannableString);
+    }
+
+    /**
+     * 设置中划线
+     */
+    private void showStrikethroughSpan()
+    {
+        TextView tvStrikethroughSpan = (TextView) findViewById(R.id.tv_strikethrough_span);
+        SpannableString spannableString = new SpannableString("这是第四行设置中划线");
+        StrikethroughSpan strikethroughSpan = new StrikethroughSpan();
+        spannableString.setSpan(strikethroughSpan,7,spannableString.length(),Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tvStrikethroughSpan.setText(spannableString);
+    }
+
+    /**
+     * 设置下划线
+     */
+    private void showUnderlineSpan()
+    {
+        TextView tvUnderLineSpan = (TextView) findViewById(R.id.tv_underline_span);
+        SpannableString spannableString = new SpannableString("这是第五行设置下划线");
+        UnderlineSpan underlineSpan = new UnderlineSpan();
+        spannableString.setSpan(underlineSpan,7,spannableString.length(),Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tvUnderLineSpan.setText(spannableString);
     }
 }
 
