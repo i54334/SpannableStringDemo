@@ -30,4 +30,15 @@
         android:layout_height="wrap_content"
         />
 
+    <TextView
+        android:layout_marginTop="16dp"
+        android:background="#FFff99"
+        android:padding="8dp"
+        android:gravity="center"
+        android:id="@+id/tv_relative_size_span"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
 </LinearLayout>

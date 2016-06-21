@@ -3,10 +3,12 @@ package com.baoyachi.spannablestringdemo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity
 
         showForegroundColorSpan();
         showBackgroundColorSpan();
+        showRelativeSizeSpan();
     }
 
     /**
@@ -44,6 +47,37 @@ public class MainActivity extends AppCompatActivity
         BackgroundColorSpan colorSpan = new BackgroundColorSpan(Color.parseColor("#FF8892"));
         spannableString.setSpan(colorSpan, 4, 9, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         tvBackgroundColorSpan.setText(spannableString);
+    }
+
+    private void showRelativeSizeSpan()
+    {
+        TextView tvRelativeSizeSpan = (TextView) findViewById(R.id.tv_relative_size_span);
+
+        SpannableString spannableString = new SpannableString("这是测试第三行文字大小");
+
+        RelativeSizeSpan sizeSpan0 = new RelativeSizeSpan(0.8f);
+        RelativeSizeSpan sizeSpan1 = new RelativeSizeSpan(1.0f);
+        RelativeSizeSpan sizeSpan2 = new RelativeSizeSpan(1.2f);
+        RelativeSizeSpan sizeSpan3 = new RelativeSizeSpan(1.4f);
+        RelativeSizeSpan sizeSpan4 = new RelativeSizeSpan(1.6f);
+        RelativeSizeSpan sizeSpan5 = new RelativeSizeSpan(1.8f);
+        RelativeSizeSpan sizeSpan6 = new RelativeSizeSpan(1.6f);
+        RelativeSizeSpan sizeSpan7 = new RelativeSizeSpan(1.4f);
+        RelativeSizeSpan sizeSpan8 = new RelativeSizeSpan(1.2f);
+        RelativeSizeSpan sizeSpan9 = new RelativeSizeSpan(1.0f);
+        RelativeSizeSpan sizeSpan10 = new RelativeSizeSpan(0.8f);
+        spannableString.setSpan(sizeSpan0,0,1,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(sizeSpan1,1,2,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(sizeSpan2,2,3,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(sizeSpan3,3,4,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(sizeSpan4,4,5,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(sizeSpan5,5,6,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(sizeSpan6,6,7,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(sizeSpan7,7,8,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(sizeSpan8,8,9,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(sizeSpan9,9,10,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(sizeSpan10,10,11,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tvRelativeSizeSpan.setText(spannableString);
     }
 }
 
