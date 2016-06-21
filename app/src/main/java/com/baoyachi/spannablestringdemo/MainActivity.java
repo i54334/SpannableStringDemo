@@ -2,20 +2,28 @@ package com.baoyachi.spannablestringdemo;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.SubscriptSpan;
 import android.text.style.SuperscriptSpan;
-import android.text.style.TypefaceSpan;
+import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -34,6 +42,9 @@ public class MainActivity extends AppCompatActivity
         showSuperscriptSpan();
         showSubscriptSpan();
         showStyleSpan();
+        showImageSpan();
+        showClickableSpan();
+        showURLSpan();
     }
 
     /**
@@ -155,6 +166,71 @@ public class MainActivity extends AppCompatActivity
         spannableString.setSpan(styleSpanItalic,spannableString.length()-2,spannableString.length(),Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         tvStyleSpan.setText(spannableString);
     }
+
+    /**
+     * 设置文本图片
+     */
+    private void showImageSpan()
+    {
+        TextView tvImageSpan = (TextView) findViewById(R.id.tv_image_span);
+        SpannableString spannableString = new SpannableString("这是第九行设置文字图片");
+        Drawable drawable = ContextCompat.getDrawable(this,R.mipmap.ic_launcher);
+        drawable.setBounds(0,0,42,42);
+        ImageSpan imageSpan = new ImageSpan(drawable);
+        spannableString.setSpan(imageSpan,9,11,Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tvImageSpan.setText(spannableString);
+    }
+
+    /**
+     * 设置文字点击
+     */
+    private void showClickableSpan()
+    {
+        TextView tvClickableSpan = (TextView) findViewById(R.id.tv_clickable_span);
+        SpannableString spannableString = new SpannableString("这是第十行设置文字点击");
+        MyClickableSpan clickableSpan = new MyClickableSpan("http://www.baoyachi.com");
+        spannableString.setSpan(clickableSpan, 5, spannableString.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tvClickableSpan.setMovementMethod(LinkMovementMethod.getInstance());
+        tvClickableSpan.setHighlightColor(Color.parseColor("#36969696"));
+        tvClickableSpan.setText(spannableString);
+        tvClickableSpan.setText(spannableString);
+    }
+
+
+    class MyClickableSpan extends ClickableSpan {
+
+        private String content;
+
+        public MyClickableSpan(String content) {
+            this.content = content;
+        }
+
+        @Override
+        public void updateDrawState(TextPaint ds) {
+            ds.setUnderlineText(false);
+        }
+
+        @Override
+        public void onClick(View widget) {
+            Toast.makeText(getBaseContext(),content,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    /**
+     * 设置超链接文本
+     */
+    private void showURLSpan()
+    {
+        TextView tvUrlSpan = (TextView) findViewById(R.id.tv_url_span);
+        SpannableString spannableString = new SpannableString("这是第十一行设置文字超链接");
+        URLSpan urlSpan = new URLSpan("http://www.baoyachi.com");
+        spannableString.setSpan(urlSpan, 6, spannableString.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tvUrlSpan.setMovementMethod(LinkMovementMethod.getInstance());
+        tvUrlSpan.setHighlightColor(Color.parseColor("#ff8892"));
+        tvUrlSpan.setText(spannableString);
+    }
+
 
 
 }
